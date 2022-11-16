@@ -1,6 +1,7 @@
 # coding: UTF-8
 import time
 import torch
+import os
 import numpy as np
 from train_eval import train, init_network
 from importlib import import_module
@@ -18,6 +19,7 @@ if __name__ == '__main__':
     model_name = args.model  # bert
     x = import_module('models.' + model_name)
     config = x.Config(dataset)
+    os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
     np.random.seed(1)
     torch.manual_seed(1)
     torch.cuda.manual_seed_all(1)
